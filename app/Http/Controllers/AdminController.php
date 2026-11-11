@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ApiUsage;
 use App\Models\AiTool;
+use App\Models\ApiUsage;
+use App\Models\Conversation;
+use App\Models\Message;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -22,6 +24,13 @@ class AdminController extends Controller
             'admins' => User::where('is_admin', true)->orWhere('role', 'admin')->count(),
             'requests' => ApiUsage::sum('requests_used'),
             'tools' => AiTool::where('is_active', true)->count(),
+            'conversations' => Conversation::count(),
+            'ai_messages' => Message::where('role', 'assistant')->count(),
+            'generated_contents' => Message::where('role', 'assistant')
+                ->whereHas('conversation', fn ($query) => $query
+                    ->whereNotNull('ai_tool')
+                    ->where('ai_tool', '!=', 'chat'))
+                ->count(),
         ];
 
         return view('admin', compact('users', 'usage', 'tools', 'stats'));

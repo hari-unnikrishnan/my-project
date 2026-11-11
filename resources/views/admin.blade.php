@@ -12,6 +12,11 @@
         <x-stat-card icon="bi-shield-check" label="Administrators" :value="$stats['admins']" detail="Privileged accounts" />
         <x-stat-card icon="bi-stars" label="AI requests" :value="$stats['requests']" detail="Recorded usage units" />
     </section>
+    <section class="stat-row">
+        <x-stat-card icon="bi-chat-square-text" label="Conversations" :value="$stats['conversations']" detail="Saved chat and tool sessions" />
+        <x-stat-card icon="bi-robot" label="AI messages" :value="$stats['ai_messages']" detail="Saved assistant responses" />
+        <x-stat-card icon="bi-file-earmark-text" label="Generated content" :value="$stats['generated_contents']" detail="Saved non-chat tool outputs" />
+    </section>
     <section class="content-grid">
         <div class="activity-panel glass-panel">
             <div class="section-header compact"><div><span class="section-kicker">Workspace accounts</span><h2>Recently registered users</h2></div><a href="{{ route('admin.users') }}">All users <i class="bi bi-arrow-right-short"></i></a></div>

@@ -24,6 +24,8 @@ Aether AI is a Laravel-based AI workspace with an 18-page standalone HTML refere
    DB_PASSWORD=
    ```
 
+   Keep `.env` private; it is ignored by Git. Do not commit credentials, API keys, or database exports containing user data.
+
 4. From the project directory, run:
 
    ```powershell
@@ -31,6 +33,12 @@ Aether AI is a Laravel-based AI workspace with an 18-page standalone HTML refere
    php artisan key:generate
    php artisan migrate --seed
    ```
+
+   `migrate` applies pending migrations without dropping existing tables or records. Back up an existing database before schema changes; do not use `migrate:fresh` or `db:wipe` on a database with data. The seed command uses an idempotent AI tool catalog seeder and does not create users or administrators.
+
+The current schema uses Laravel's `users`, `password_reset_tokens`, and `sessions` tables; `conversations` and `messages` for chat and tool-generated outputs; `ai_tools` for the catalog; `user_settings`; `subscriptions`; and `api_usage` for request history. Generated images are stored as private files under Laravel storage and referenced by message metadata. Separate roles/permissions, generated-content, payments, and personal-access-token tables are not added because the current app has no such features; administrator access uses the existing `role` and `is_admin` user fields. The user-settings owner uniqueness migration checks for duplicates and stops without changing data if it finds any.
+
+To confirm which migrations are applied, run `php artisan migrate:status`. To verify Laravel can connect to the configured database without changing it, run `php artisan tinker --execute="dump(DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME));"`. Run pending migrations only after reviewing them and backing up any existing database.
 
 5. Serve the Laravel `public` directory with Apache. For local development, Laravel's built-in server is also available:
 

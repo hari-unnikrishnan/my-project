@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\AiTool;
 use App\Models\Conversation;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
@@ -368,6 +369,63 @@ class WorkspaceTest extends TestCase
         $this->actingAs($otherUser)
             ->get(route('chat.show', $conversation))
             ->assertNotFound();
+    }
+
+    public function test_admin_dashboard_reports_database_backed_workspace_totals(): void
+    {
+        $user = User::factory()->create();
+        $admin = User::factory()->create(['role' => 'admin', 'is_admin' => true]);
+        AiTool::create([
+            'name' => 'Content Writer',
+            'slug' => 'content-writer',
+            'category' => 'writing',
+            'description' => 'Write content.',
+            'is_active' => true,
+        ]);
+
+        foreach ([
+            ['user' => $user, 'tool' => 'chat'],
+            ['user' => $user, 'tool' => 'content-writer'],
+            ['user' => $admin, 'tool' => 'image-generator'],
+        ] as $conversationData) {
+            $conversation = $conversationData['user']->conversations()->create([
+                'title' => 'Saved output',
+                'ai_tool' => $conversationData['tool'],
+            ]);
+            $conversation->messages()->create([
+                'user_id' => $conversationData['user']->id,
+                'role' => 'assistant',
+                'content' => 'Generated response.',
+            ]);
+        }
+
+        $user->apiUsages()->create([
+            'tool_name' => 'AI Chat',
+            'requests_used' => 5,
+            'source' => 'chat',
+        ]);
+
+        $response = $this->actingAs($admin)->get(route('admin.index'));
+
+        $response->assertOk();
+        $stats = $response->viewData('stats');
+        $this->assertSame(2, $stats['users']);
+        $this->assertSame(1, $stats['admins']);
+        $this->assertSame(5, $stats['requests']);
+        $this->assertSame(1, $stats['tools']);
+        $this->assertSame(3, $stats['conversations']);
+        $this->assertSame(3, $stats['ai_messages']);
+        $this->assertSame(2, $stats['generated_contents']);
+    }
+
+    public function test_user_settings_are_unique_per_user(): void
+    {
+        $user = User::factory()->create();
+
+        $user->settings()->create();
+
+        $this->expectException(QueryException::class);
+        $user->settings()->create();
     }
 
     public function test_admin_can_pause_a_tool_and_regular_users_cannot_manage_tools(): void
