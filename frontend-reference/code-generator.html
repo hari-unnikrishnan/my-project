@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Code Assistant — Aether AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link rel="stylesheet" href="./theme.css">
+</head>
+<body class="theme-dark" data-page="code">
+  <div class="app-shell">
+    <aside class="sidebar"><div class="brand"><span class="brand-mark">A</span><div class="brand-copy"><strong>Aether AI</strong><small>workspace</small></div></div>
+      <nav class="nav-stack" aria-label="Main navigation">
+        <a class="nav-item" href="./dashboard.html" data-nav-page="dashboard"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a><a class="nav-item" href="./chat.html" data-nav-page="chat"><i class="bi bi-chat-dots-fill"></i><span>AI Chat</span></a><a class="nav-item" href="./ai-writing.html" data-nav-page="studio"><i class="bi bi-stars"></i><span>AI Writing</span></a><a class="nav-item" href="./image-generator.html" data-nav-page="image"><i class="bi bi-image-fill"></i><span>AI Image Generator</span></a><a class="nav-item active" href="./code-generator.html" data-nav-page="code"><i class="bi bi-code-square"></i><span>AI Code Assistant</span></a><a class="nav-item" href="./website-builder.html" data-nav-page="website"><i class="bi bi-window-fullscreen"></i><span>AI Website Builder</span></a><a class="nav-item" href="./document-generator.html" data-nav-page="docs"><i class="bi bi-file-earmark-text-fill"></i><span>AI Document Generator</span></a><a class="nav-item" href="./automation.html" data-nav-page="automation"><i class="bi bi-gear-fill"></i><span>AI Automation</span></a><a class="nav-item" href="./history.html" data-nav-page="history"><i class="bi bi-clock-history"></i><span>History</span></a><a class="nav-item" href="./settings.html" data-nav-page="settings"><i class="bi bi-sliders"></i><span>Settings</span></a>
+      </nav><div class="sidebar-footer"><div class="mini-card"><span class="mini-label">Code workspace</span><strong>Ready when you are</strong></div></div>
+    </aside>
+    <div class="workspace"><header class="topbar"><div class="topbar-left"><button class="icon-button" type="button" data-sidebar-toggle aria-label="Toggle sidebar"><i class="bi bi-list"></i></button><div class="topbar-breadcrumbs"><span>Workspace</span><i class="bi bi-chevron-right"></i><strong>Code assistant</strong></div></div><div class="topbar-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button><a class="profile-pill" href="./profile.html"><span class="profile-initials">AI</span><div><strong>Your workspace</strong><small>Profile</small></div></a></div></header>
+      <main class="page-content">
+        <section class="hero-panel glass-panel"><div class="hero-copy"><span class="eyebrow">Developer workspace</span><h1>Think through code, faster.</h1><p>Generate, debug, and explain code with a focused assistant for your stack.</p></div></section>
+        <section class="tool-workspace">
+          <form class="glass-panel tool-form" data-preview-form><div class="section-header compact"><div><span class="section-kicker">New request</span><h2>Tell us what you’re building</h2></div><i class="bi bi-code-slash tool-heading-icon"></i></div>
+            <label class="form-label" for="code-task">Task</label><select class="form-select" id="code-task" name="task"><option>Generate code</option><option>Debug code</option><option>Explain code</option></select>
+            <label class="form-label" for="language">Language</label><select class="form-select" id="language" name="language"><option>PHP</option><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Python</option><option>SQL</option></select>
+            <label class="form-label" for="code-prompt">Instructions</label><textarea class="form-control" id="code-prompt" rows="5" placeholder="Describe the problem, expected behavior, and relevant constraints..."></textarea>
+            <label class="form-label" for="code-input">Code context <span class="muted-label">Optional</span></label><textarea class="form-control code-input" id="code-input" rows="8" placeholder="// Paste code to review or debug"></textarea>
+            <button class="primary-button" type="submit"><i class="bi bi-stars"></i> Generate solution</button>
+          </form>
+          <section class="glass-panel tool-output"><div class="section-header compact"><div><span class="section-kicker">Assistant output</span><h2>Your result appears here</h2></div><button class="icon-button" type="button" data-copy-output aria-label="Copy result"><i class="bi bi-clipboard"></i></button></div><div class="empty-state"><span class="tool-icon"><i class="bi bi-braces"></i></span><p>Describe a coding task to get started. Your generated code and explanations will appear in this space.</p></div></section>
+        </section>
+      </main><footer class="page-footer">Aether AI <span>·</span> Your ideas, in motion.</footer>
+    </div>
+  </div><script src="./app.js"></script>
+</body>
+</html>

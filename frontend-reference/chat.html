@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aether AI — Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./theme.css">
+</head>
+<body class="theme-dark" data-page="chat">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark">A</span>
+        <div class="brand-copy">
+          <strong>Aether AI</strong>
+          <small>workspace</small>
+        </div>
+      </div>
+
+      <nav class="nav-stack" aria-label="Main navigation">
+        <a class="nav-item" href="./dashboard.html" data-nav-page="dashboard"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+        <a class="nav-item active" href="./chat.html" data-nav-page="chat"><i class="bi bi-chat-dots-fill"></i><span>AI Chat</span></a>
+        <a class="nav-item" href="./ai-writing.html" data-nav-page="studio"><i class="bi bi-stars"></i><span>AI Writing</span></a>
+        <a class="nav-item" href="./image-generator.html" data-nav-page="image"><i class="bi bi-image-fill"></i><span>AI Image Generator</span></a>
+        <a class="nav-item" href="./code-generator.html" data-nav-page="code"><i class="bi bi-code-square"></i><span>AI Code Assistant</span></a>
+        <a class="nav-item" href="./website-builder.html" data-nav-page="website"><i class="bi bi-window-fullscreen"></i><span>AI Website Builder</span></a>
+        <a class="nav-item" href="./document-generator.html" data-nav-page="docs"><i class="bi bi-file-earmark-text-fill"></i><span>AI Document Generator</span></a>
+        <a class="nav-item" href="./automation.html" data-nav-page="automation"><i class="bi bi-gear-fill"></i><span>AI Automation</span></a>
+        <a class="nav-item" href="./history.html" data-nav-page="history"><i class="bi bi-clock-history"></i><span>History</span></a>
+        <a class="nav-item" href="./settings.html" data-nav-page="settings"><i class="bi bi-sliders"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="mini-card">
+          <span class="mini-label">Model</span>
+          <strong>gpt-4o-mini</strong>
+        </div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button" type="button" data-sidebar-toggle aria-label="Toggle sidebar">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="topbar-breadcrumbs">
+            <span>Workspace</span>
+            <i class="bi bi-chevron-right"></i>
+            <strong>AI Chat</strong>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">
+            <i class="bi bi-sun-fill"></i>
+          </button>
+          <button class="icon-button" type="button" aria-label="Notifications">
+            <i class="bi bi-bell"></i>
+          </button>
+          <a class="profile-pill" href="./profile.html" aria-label="User profile">
+            <span class="profile-initials">MC</span>
+            <div>
+              <strong>Maya Chen</strong>
+              <small>Admin</small>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content chat-layout">
+        <aside class="conversation-panel glass-panel">
+          <div class="section-header compact">
+            <div>
+              <span class="section-kicker">Recent</span>
+              <h2>Conversations</h2>
+            </div>
+            <button class="icon-button small" type="button" aria-label="New conversation">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+
+          <div class="conversation-list">
+            <article class="context-card active">
+              <div class="context-topline">
+                <strong>Q4 launch messaging</strong>
+                <span class="status-pill success">Active</span>
+              </div>
+              <p>Memorize launch narrative, channels, and value props.</p>
+              <small>12 messages • Today, 10:42</small>
+            </article>
+
+            <article class="context-card">
+              <div class="context-topline">
+                <strong>Laravel queue options</strong>
+                <span class="status-pill neutral">Saved</span>
+              </div>
+              <p>Compare async jobs, queues, and operational trade-offs.</p>
+              <small>8 messages • Yesterday</small>
+            </article>
+
+            <article class="context-card">
+              <div class="context-topline">
+                <strong>Interview themes</strong>
+                <span class="status-pill neutral">Saved</span>
+              </div>
+              <p>Pull patterns and highlights from customer research.</p>
+              <small>15 messages • Monday</small>
+            </article>
+          </div>
+
+          <div class="suggestion-box">
+            <span class="section-kicker">Suggested prompts</span>
+            <div class="suggestion-list">
+              <button class="suggestion-pill" type="button" data-suggest="Summarize the launch narrative and show three positioning angles.">Launch narrative</button>
+              <button class="suggestion-pill" type="button" data-suggest="Review this product brief and identify the biggest risks.">Risk review</button>
+              <button class="suggestion-pill" type="button" data-suggest="Draft a clear user onboarding flow for a premium AI workspace.">Onboarding flow</button>
+            </div>
+          </div>
+        </aside>
+
+        <section class="chat-panel glass-panel">
+          <div class="chat-header">
+            <div>
+              <span class="section-kicker">Live conversation</span>
+              <h2>Product strategy assistant</h2>
+            </div>
+            <div class="chat-badges">
+              <span class="status-pill neutral">gpt-4o-mini</span>
+              <span class="status-pill success">Synced</span>
+            </div>
+          </div>
+
+          <div class="chat-messages" data-chat-messages>
+            <div class="message message-assistant">
+              <div class="message-avatar message-avatar--assistant">A</div>
+              <div class="message-bubble message-bubble--assistant">
+                <p>Hello, Maya. I can help refine your launch narrative, customer messaging, and product direction. What would you like to prioritize first?</p>
+              </div>
+            </div>
+
+            <div class="message message-user">
+              <div class="message-avatar message-avatar--user">MC</div>
+              <div class="message-bubble">
+                <p>Help me build a Clearest premium AI workspace positioning for a B2B product launch.</p>
+              </div>
+            </div>
+
+            <div class="message message-assistant">
+              <div class="message-avatar message-avatar--assistant">A</div>
+              <div class="message-bubble message-bubble--assistant">
+                <p>Here’s a strong direction: focus on clarity, speed, and confidence. Frame Aether AI as a premium workspace that combines strategy, creation, and execution in one place.</p>
+                <div class="code-block">
+                  <div class="code-block__header">
+                    <span>positioning.md</span>
+                    <button type="button" class="mini-action"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                  <pre><code>Positioning
+• one workspace for AI strategy, creation, and shipping
+• premium clarity instead of fragmented tools
+• fast experimentation without losing context</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="composer" data-chat-form>
+            <div class="composer-tools">
+              <button class="icon-button ghost" type="button" aria-label="Attach file"><i class="bi bi-paperclip"></i></button>
+              <button class="icon-button ghost" type="button" aria-label="Voice input"><i class="bi bi-mic"></i></button>
+            </div>
+            <textarea data-chat-input rows="1" placeholder="Message Aether AI"></textarea>
+            <button class="primary-button" type="submit">Send</button>
+          </form>
+        </section>
+      </main>
+      <footer class="page-footer">Aether AI <span>·</span> Your ideas, in motion.</footer>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
