@@ -38,6 +38,8 @@ Aether AI is a Laravel-based AI workspace with an 18-page standalone HTML refere
 
 The current schema uses Laravel's `users`, `password_reset_tokens`, and `sessions` tables; `conversations` and `messages` for chat and tool-generated outputs; `ai_tools` for the catalog; `user_settings`; `subscriptions`; and `api_usage` for request history. Generated images are stored as private files under Laravel storage and referenced by message metadata. Separate roles/permissions, generated-content, payments, and personal-access-token tables are not added because the current app has no such features; administrator access uses the existing `role` and `is_admin` user fields. The user-settings owner uniqueness migration checks for duplicates and stops without changing data if it finds any.
 
+SQL schema scripts are also available for [MySQL/MariaDB](./database/sql/mysql-schema.sql) and [PostgreSQL](./database/sql/postgresql-schema.sql). They create the tables and Laravel migration ledger for a new, empty database; they contain no user records, API keys, or other secrets. Use either the SQL script or Laravel migrations to initialize a database, not both. The documented XAMPP setup uses MySQL/MariaDB; PostgreSQL requires a PostgreSQL server and `DB_CONNECTION=pgsql`.
+
 To confirm which migrations are applied, run `php artisan migrate:status`. To verify Laravel can connect to the configured database without changing it, run `php artisan tinker --execute="dump(DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME));"`. Run pending migrations only after reviewing them and backing up any existing database.
 
 5. Serve the Laravel `public` directory with Apache. For local development, Laravel's built-in server is also available:
