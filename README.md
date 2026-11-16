@@ -6,7 +6,7 @@ Aether AI is a Laravel-based AI workspace with an 18-page HTML, CSS, JavaScript,
 
 ## Live static preview
 
-The [GitHub Pages site](https://hari-unnikrishnan.github.io/my-project/) opens the static frontend in [`frontend-reference`](./frontend-reference). It demonstrates the app screens and navigation using HTML, CSS, JavaScript, Bootstrap, and jQuery. Account, database, and AI actions are preview-only: GitHub Pages cannot run the Laravel backend or securely store API keys. Use a PHP-capable host to run the full Laravel application.
+The [GitHub Pages site](https://hari-unnikrishnan.github.io/my-project/) opens the static frontend in [`frontend-reference`](./frontend-reference). It demonstrates the app screens and navigation using HTML, CSS, JavaScript, Bootstrap, and jQuery. Registration creates only a temporary profile in the current browser tab; passwords are not stored or checked. Database and AI actions remain previews: GitHub Pages cannot run the Laravel backend or securely store API keys. Use a PHP-capable host to run the full Laravel application.
 
 ## Requirements
 

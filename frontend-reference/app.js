@@ -22,6 +22,27 @@ jQuery(function ($) {
     notify.timeout = window.setTimeout(() => status.classList.remove('show'), 3200);
   };
 
+  const demoUserName = sessionStorage.getItem('aether-demo-name');
+  if (demoUserName) {
+    const initials = demoUserName.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
+    document.querySelectorAll('[data-demo-user-name]').forEach((element) => {
+      element.textContent = demoUserName;
+    });
+    document.querySelectorAll('[data-demo-user-initials]').forEach((element) => {
+      element.textContent = initials;
+    });
+    const greeting = document.querySelector('[data-demo-greeting]');
+    if (greeting) greeting.textContent = `Good morning, ${demoUserName.trim().split(/\s+/)[0]}.`;
+  }
+
+  if (body.dataset.page === 'dashboard') {
+    const demoNotice = sessionStorage.getItem('aether-demo-notice');
+    if (demoNotice) {
+      notify(demoNotice);
+      sessionStorage.removeItem('aether-demo-notice');
+    }
+  }
+
   const applyTheme = (theme) => {
     body.classList.toggle('theme-light', theme === 'light');
     body.classList.toggle('theme-dark', theme !== 'light');
@@ -123,6 +144,29 @@ jQuery(function ($) {
         confirmation.setCustomValidity('Passwords do not match.');
         confirmation.reportValidity();
         confirmation.setCustomValidity('');
+        return;
+      }
+
+      if (form.hasAttribute('data-demo-register')) {
+        const name = form.querySelector('[name="name"]').value.trim();
+        const email = form.querySelector('[name="email"]').value.trim().toLowerCase();
+        sessionStorage.setItem('aether-demo-name', name);
+        sessionStorage.setItem('aether-demo-email', email);
+        sessionStorage.setItem('aether-demo-notice', 'Demo profile created for this browser tab. No password was saved; this is not a real account.');
+        window.location.assign('./dashboard.html');
+        return;
+      }
+
+      if (form.hasAttribute('data-demo-login')) {
+        const email = form.querySelector('[name="email"]').value.trim().toLowerCase();
+        const savedEmail = sessionStorage.getItem('aether-demo-email');
+        if (!savedEmail || email !== savedEmail) {
+          notify('No matching demo profile in this browser tab. Create a demo profile first.');
+          return;
+        }
+
+        sessionStorage.setItem('aether-demo-notice', 'Demo sign-in complete. Passwords are not stored or checked.');
+        window.location.assign('./dashboard.html');
         return;
       }
 
