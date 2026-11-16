@@ -2,6 +2,8 @@
 
 Aether AI is a Laravel-based AI workspace with an 18-page standalone HTML reference, a Blade application, account authentication, MySQL persistence, and server-side OpenAI integration.
 
+![Aether AI chat workspace](./public/assets/images/aether-ai-chat.png)
+
 ## Requirements
 
 - PHP 8.2+
