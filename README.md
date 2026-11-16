@@ -1,8 +1,12 @@
 # Aether AI
 
-Aether AI is a Laravel-based AI workspace with an 18-page standalone HTML reference, a Blade application, account authentication, MySQL persistence, and server-side OpenAI integration.
+Aether AI is a Laravel-based AI workspace with an 18-page HTML, CSS, JavaScript, Bootstrap, and jQuery static preview, a Blade application, account authentication, MySQL persistence, and server-side OpenAI integration.
 
 ![Aether AI chat workspace](./public/assets/images/aether-ai-chat.png)
+
+## Live static preview
+
+The [GitHub Pages site](https://hari-unnikrishnan.github.io/my-project/) opens the static frontend in [`frontend-reference`](./frontend-reference). It demonstrates the app screens and navigation using HTML, CSS, JavaScript, Bootstrap, and jQuery. Account, database, and AI actions are preview-only: GitHub Pages cannot run the Laravel backend or securely store API keys. Use a PHP-capable host to run the full Laravel application.
 
 ## Requirements
 

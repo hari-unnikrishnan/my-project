@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+jQuery(function ($) {
   const body = document.body;
   const sidebar = document.querySelector('.sidebar');
   const sidebarToggle = document.querySelector('[data-sidebar-toggle]');
@@ -62,12 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelectorAll('.sidebar .nav-item').forEach((link) => {
-    link.addEventListener('click', () => {
-      if (window.matchMedia('(max-width: 860px)').matches) {
-        body.classList.remove('sidebar-open');
-      }
-    });
+  $('.sidebar .nav-item').on('click', () => {
+    if (window.matchMedia('(max-width: 860px)').matches) {
+      body.classList.remove('sidebar-open');
+    }
   });
 
   if (themeToggle) {
@@ -87,12 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('[data-suggest]').forEach((button) => {
-    button.addEventListener('click', () => {
-      if (!chatInput) return;
-      chatInput.value = button.dataset.suggest || button.textContent.trim();
-      chatInput.focus();
-    });
+  $('[data-suggest]').on('click', function () {
+    if (!chatInput) return;
+    chatInput.value = $(this).attr('data-suggest') || $(this).text().trim();
+    chatInput.focus();
   });
 
   if (chatForm && chatInput && chatMessages) {
